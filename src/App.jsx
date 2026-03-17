@@ -8,14 +8,26 @@ function App() {
   const [expandedId, setExpandedId] = useState(null)
 
   useEffect(() => {
+    loadDrops()
+  }, [])
+
+  const loadDrops = async () => {
     try {
-      const decodedData = atob(__SECRET_DATA__)
-      const drops = JSON.parse(decodedData)
+      const response = await fetch('drops.json', { cache: 'no-store' })
+      if (!response.ok) throw new Error('Failed to fetch drops')
+      const drops = await response.json()
       setAllDrops(drops)
     } catch (err) {
       console.error('Error loading drops:', err)
+      try {
+        const decodedData = atob(__SECRET_DATA__)
+        const drops = JSON.parse(decodedData)
+        setAllDrops(drops)
+      } catch (fallbackErr) {
+        console.error('Error loading fallback data:', fallbackErr)
+      }
     }
-  }, [])
+  }
 
   const filteredDrops = useMemo(() => {
     return filter === 'all' ? allDrops : allDrops.filter(i => i.type === filter)
@@ -57,9 +69,9 @@ function App() {
           </select>
         </div>
 
-        <button onClick={() => window.location.reload()}>
+        <button onClick={loadDrops}>
           <span></span>
-          <i className="fa-solid fa-refresh"></i> Refresh Page
+          <i className="fa-solid fa-refresh"></i> Refresh
         </button>
       </div>
 

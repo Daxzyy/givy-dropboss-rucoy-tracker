@@ -1,0 +1,27 @@
+[
+    {
+        "tanggal": "17 Maret 2026",
+        "nama": "Recovery Backpack",
+        "boss": "Zarron Bravehorn",
+        "img": "https://cdn.yupra.my.id/yp/jkwgchrg.webp",
+        "rarity": "Ultra Rare",
+        "type": "ultra-rare"
+    },
+    {
+        "tanggal": "17 Februari 2025",
+        "nama": "Recovery Quiver",
+        "boss": "Boss Event",
+        "img": "https://i.postimg.cc/RhzcM30X/IMG-20250217-222814.jpg",
+        "rarity": "Blue Rare",
+        "type": "blue-rare",
+        "noIconBg": true
+    },
+    {
+        "tanggal": "2 Juli 2024",
+        "nama": "Recovery Glove (Left)",
+        "boss": "General Krinok",
+        "img": "https://cdn.yupra.my.id/yp/ki9a4dk5.webp",
+        "rarity": "Ultra Rare",
+        "type": "ultra-rare"
+    }
+]

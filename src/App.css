@@ -1,6 +1,7 @@
 * {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-touch-callout: none;
+    box-sizing: border-box;
 }
 
 body {
@@ -100,11 +101,16 @@ h1 {
     transform: rotate(45deg);
 }
 
-#instructions {
+.instructions {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
     transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+.instructions.show {
+    max-height: 200px;
+    opacity: 1;
 }
 
 .info-box {
@@ -117,6 +123,14 @@ h1 {
     text-align: left;
     line-height: 1.6;
     color: #c8e6c9;
+}
+
+.info-box p {
+    margin: 0 0 10px 0;
+}
+
+.info-box p:last-child {
+    margin-bottom: 0;
 }
 
 .divider {
@@ -137,10 +151,13 @@ label {
     margin-bottom: 12px;
 }
 
+.filter-row select {
+    flex: 1;
+}
+
 select {
-    width: 100%;
     padding: 7px;
-    border: 1px solid #2d8659;
+    border: none;
     border-radius: 6px;
     background: #0f2818;
     color: #e8f5e9;
@@ -149,6 +166,7 @@ select {
     box-sizing: border-box;
     outline: none;
     cursor: pointer;
+    border: 1px solid #2d8659;
 }
 
 button {
@@ -158,6 +176,7 @@ button {
     background: #4caf50;
     border: none;
     outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     border-radius: 8px;
     font-family: 'Ubuntu Mono', monospace;
     font-size: 15px;
@@ -165,6 +184,9 @@ button {
     color: white;
     position: relative;
     overflow: hidden;
+    -webkit-appearance: none;
+    appearance: none;
+    touch-action: manipulation;
     font-weight: 700;
 }
 
@@ -178,9 +200,18 @@ button .shimmer {
     left: -150%;
     width: 55%;
     height: 120%;
-    background: linear-gradient(105deg, transparent 10%, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 48%, rgba(255, 255, 255, 1) 52%, rgba(255, 255, 255, 0) 70%, transparent 90%);
+    background: linear-gradient(
+        105deg,
+        transparent 10%,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 1) 48%,
+        rgba(255, 255, 255, 1) 52%,
+        rgba(255, 255, 255, 0) 70%,
+        transparent 90%
+    );
     transform: skewX(-18deg);
     pointer-events: none;
+    transition: none;
     z-index: 2;
 }
 
@@ -230,9 +261,14 @@ button:hover .shimmer {
     transition: all 0.3s ease;
 }
 
-.drop-item:hover, .drop-item.expanded {
+.drop-item:hover {
     border-color: #4caf50;
     box-shadow: 0 0 12px rgba(76, 175, 80, 0.15);
+}
+
+.drop-item.expanded {
+    border-color: #4caf50;
+    box-shadow: 0 0 12px rgba(76, 175, 80, 0.2);
 }
 
 .drop-item.ultra-rare {
@@ -240,10 +276,16 @@ button:hover .shimmer {
     border-color: rgba(255, 0, 255, 0.3);
 }
 
-.drop-item.ultra-rare:hover, .drop-item.ultra-rare.expanded {
+.drop-item.ultra-rare:hover {
     background: rgba(255, 0, 255, 0.1);
     border-color: rgba(255, 0, 255, 0.5);
     box-shadow: 0 0 12px rgba(255, 0, 255, 0.2);
+}
+
+.drop-item.ultra-rare.expanded {
+    background: rgba(255, 0, 255, 0.12);
+    border-color: rgba(255, 0, 255, 0.6);
+    box-shadow: 0 0 12px rgba(255, 0, 255, 0.3);
 }
 
 .drop-item.blue-rare {
@@ -251,10 +293,16 @@ button:hover .shimmer {
     border-color: rgba(0, 118, 156, 0.3);
 }
 
-.drop-item.blue-rare:hover, .drop-item.blue-rare.expanded {
+.drop-item.blue-rare:hover {
     background: rgba(0, 118, 156, 0.1);
     border-color: rgba(0, 118, 156, 0.5);
     box-shadow: 0 0 12px rgba(0, 118, 156, 0.2);
+}
+
+.drop-item.blue-rare.expanded {
+    background: rgba(0, 118, 156, 0.12);
+    border-color: rgba(0, 118, 156, 0.6);
+    box-shadow: 0 0 12px rgba(0, 118, 156, 0.3);
 }
 
 .drop-header {
@@ -262,6 +310,8 @@ button:hover .shimmer {
     align-items: center;
     gap: 12px;
     padding: 12px;
+    cursor: pointer;
+    user-select: none;
 }
 
 .drop-icon {
@@ -273,6 +323,18 @@ button:hover .shimmer {
     align-items: center;
     justify-content: center;
     background: rgba(255, 255, 255, 0.05);
+}
+
+.drop-icon.no-bg {
+    background: transparent !important;
+}
+
+.drop-item.ultra-rare .drop-icon {
+    background: rgba(255, 0, 255, 0.25);
+}
+
+.drop-item.blue-rare .drop-icon {
+    background: rgba(60, 188, 252, 0.25);
 }
 
 .drop-info {
@@ -298,21 +360,26 @@ button:hover .shimmer {
     border-radius: 4px;
     font-size: 11px;
     font-weight: 700;
+    flex-shrink: 0;
 }
 
 .drop-badge.ultra {
     background: #ff00ff;
     color: white;
+    text-shadow: 0 0 4px rgba(255, 0, 255, 0.8);
 }
 
 .drop-badge.blue {
-    background: #00769C;
-    color: white;
+    background: #00769C !important;
+    color: white !important;
 }
 
 .drop-toggle {
     font-size: 14px;
     color: #4caf50;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
     transition: transform 0.3s ease;
 }
 
@@ -328,6 +395,16 @@ button:hover .shimmer {
     border-top: 1px solid rgba(76, 175, 80, 0.2);
 }
 
+.drop-item.ultra-rare .drop-details {
+    background: rgba(255, 0, 255, 0.08);
+    border-top-color: rgba(255, 0, 255, 0.3);
+}
+
+.drop-item.blue-rare .drop-details {
+    background: rgba(0, 118, 156, 0.08);
+    border-top-color: rgba(0, 118, 156, 0.3);
+}
+
 .drop-item.expanded .drop-details {
     max-height: 200px;
 }
@@ -335,6 +412,8 @@ button:hover .shimmer {
 .drop-details-content {
     padding: 12px;
     font-size: 12px;
+    line-height: 1.6;
+    color: #c8e6c9;
 }
 
 .detail-row {
@@ -348,33 +427,67 @@ button:hover .shimmer {
     font-weight: 700;
 }
 
+.detail-value {
+    color: #e8f5e9;
+    text-align: right;
+}
+
 .empty-state {
     background: #0f2818;
     border: 1px solid #2d8659;
     border-radius: 8px;
     padding: 20px;
+    margin-top: 12px;
+    text-align: center;
     color: #c8e6c9;
+    font-size: 14px;
 }
 
-#footer {
+.footer {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     background-color: #0f2818;
     border-top: 1px solid #2d8659;
+    text-align: center;
     padding: 10px;
     font-size: 13px;
     color: #66bb6a;
+    letter-spacing: 0.5px;
+    z-index: 1;
 }
 
-#footer a {
+.footer a {
     color: #4caf50;
     text-decoration: none;
     font-weight: 700;
 }
 
 @media (max-width: 600px) {
-    .container { margin-bottom: 80px; }
-    h1 { font-size: 18px; }
+    .container {
+        margin-bottom: 80px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    .drop-header {
+        padding: 10px;
+    }
+
+    .drop-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .drop-name {
+        font-size: 12px;
+    }
+
+    .drop-badge {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
 }

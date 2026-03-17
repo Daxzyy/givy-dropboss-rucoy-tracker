@@ -129,10 +129,6 @@ h1 {
     margin: 0 0 10px 0;
 }
 
-.info-box p:last-child {
-    margin-bottom: 0;
-}
-
 .divider {
     border-top: 1px solid #2d8659;
     margin: 12px 0;
@@ -151,22 +147,17 @@ label {
     margin-bottom: 12px;
 }
 
-.filter-row select {
-    flex: 1;
-}
-
 select {
+    width: 100%;
     padding: 7px;
-    border: none;
+    border: 1px solid #2d8659;
     border-radius: 6px;
     background: #0f2818;
     color: #e8f5e9;
     font-family: 'Ubuntu Mono', monospace;
     font-size: 14px;
-    box-sizing: border-box;
     outline: none;
     cursor: pointer;
-    border: 1px solid #2d8659;
 }
 
 button {
@@ -175,8 +166,6 @@ button {
     padding: 10px;
     background: #4caf50;
     border: none;
-    outline: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     border-radius: 8px;
     font-family: 'Ubuntu Mono', monospace;
     font-size: 15px;
@@ -184,9 +173,6 @@ button {
     color: white;
     position: relative;
     overflow: hidden;
-    -webkit-appearance: none;
-    appearance: none;
-    touch-action: manipulation;
     font-weight: 700;
 }
 
@@ -211,7 +197,6 @@ button .shimmer {
     );
     transform: skewX(-18deg);
     pointer-events: none;
-    transition: none;
     z-index: 2;
 }
 
@@ -255,7 +240,6 @@ button:hover .shimmer {
     background: rgba(76, 175, 80, 0.06);
     border: 1px solid #2d8659;
     border-radius: 8px;
-    padding: 0;
     overflow: hidden;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -279,13 +263,11 @@ button:hover .shimmer {
 .drop-item.ultra-rare:hover {
     background: rgba(255, 0, 255, 0.1);
     border-color: rgba(255, 0, 255, 0.5);
-    box-shadow: 0 0 12px rgba(255, 0, 255, 0.2);
 }
 
 .drop-item.ultra-rare.expanded {
     background: rgba(255, 0, 255, 0.12);
     border-color: rgba(255, 0, 255, 0.6);
-    box-shadow: 0 0 12px rgba(255, 0, 255, 0.3);
 }
 
 .drop-item.blue-rare {
@@ -296,13 +278,11 @@ button:hover .shimmer {
 .drop-item.blue-rare:hover {
     background: rgba(0, 118, 156, 0.1);
     border-color: rgba(0, 118, 156, 0.5);
-    box-shadow: 0 0 12px rgba(0, 118, 156, 0.2);
 }
 
 .drop-item.blue-rare.expanded {
     background: rgba(0, 118, 156, 0.12);
     border-color: rgba(0, 118, 156, 0.6);
-    box-shadow: 0 0 12px rgba(0, 118, 156, 0.3);
 }
 
 .drop-header {
@@ -310,15 +290,12 @@ button:hover .shimmer {
     align-items: center;
     gap: 12px;
     padding: 12px;
-    cursor: pointer;
-    user-select: none;
 }
 
 .drop-icon {
     width: 32px;
     height: 32px;
     border-radius: 6px;
-    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -360,7 +337,6 @@ button:hover .shimmer {
     border-radius: 4px;
     font-size: 11px;
     font-weight: 700;
-    flex-shrink: 0;
 }
 
 .drop-badge.ultra {
@@ -377,7 +353,6 @@ button:hover .shimmer {
 .drop-toggle {
     font-size: 14px;
     color: #4caf50;
-    flex-shrink: 0;
     width: 20px;
     text-align: center;
     transition: transform 0.3s ease;
@@ -412,8 +387,6 @@ button:hover .shimmer {
 .drop-details-content {
     padding: 12px;
     font-size: 12px;
-    line-height: 1.6;
-    color: #c8e6c9;
 }
 
 .detail-row {
@@ -429,7 +402,6 @@ button:hover .shimmer {
 
 .detail-value {
     color: #e8f5e9;
-    text-align: right;
 }
 
 .empty-state {
@@ -438,9 +410,7 @@ button:hover .shimmer {
     border-radius: 8px;
     padding: 20px;
     margin-top: 12px;
-    text-align: center;
     color: #c8e6c9;
-    font-size: 14px;
 }
 
 .footer {
@@ -454,7 +424,6 @@ button:hover .shimmer {
     padding: 10px;
     font-size: 13px;
     color: #66bb6a;
-    letter-spacing: 0.5px;
     z-index: 1;
 }
 
@@ -468,26 +437,17 @@ button:hover .shimmer {
     .container {
         margin-bottom: 80px;
     }
-
     h1 {
         font-size: 18px;
     }
-
     .drop-header {
         padding: 10px;
     }
-
     .drop-icon {
         width: 28px;
         height: 28px;
     }
-
     .drop-name {
         font-size: 12px;
-    }
-
-    .drop-badge {
-        font-size: 10px;
-        padding: 3px 6px;
     }
 }
